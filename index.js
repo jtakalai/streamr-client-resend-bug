@@ -34,7 +34,11 @@ async function run() {
 }
 
 async function send(messageArray) {
-    const client = new StreamrClient({ apiKey })
+    const client = new StreamrClient({
+        auth: {
+            privateKey: '0x1234576812345768123457681234576812345768123457681234576812345768'
+        }
+    })
     const sendStream = await client.getOrCreateStream({
         name: streamName,
         public: true,
@@ -48,7 +52,11 @@ async function send(messageArray) {
 }
 
 async function receive(bufferArray) {
-    const client = new StreamrClient({ apiKey })
+    const client = new StreamrClient({
+        auth: {
+            privateKey: '0x1234576812345768123457681234576812345768123457681234576812345768'
+        }
+    })
     client.on("connected", function() { log("A connection has been established!") })
     const recvStream = await client.getStreamByName(streamName)
 
